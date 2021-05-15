@@ -63,4 +63,13 @@ main{
 
 .main_container{
     background-color: #0f171e;
+    display: flex;
+    flex-direction: column;
+}
+.show_container{
+    display: flex;
+}
+.show_template_box{
+    padding: 10px;
+    border: solid 1px white;
 }

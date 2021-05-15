@@ -1,97 +1,129 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- font -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
-        <!-- bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-        <!-- FRAMEWORK -->
-        <link rel="stylesheet" href="css/framework.css">
-        <!-- https://fontawesome.com/v4.7.0/icons/ -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <!-- FLAG ICONS  https://cdnjs.com/libraries/flag-icon-css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw==" crossorigin="anonymous" />
-        <!-- MyCSS -->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/slider.css">
-        <!-- Vue JS -->
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-        <!-- JSON -->
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        
-        <title></title>
-        
-    </head>
-    <body>
-        <div id="app">
-            <div tabindex="-1" class="all">
-                <div class="container_flex">
-                    <header>
-                        <div class="header_box">
-                            <div class="header_left">
-                                <div class="logo_box">
-                                    <img src="img/Fake-PrimeVideo.png" alt="">
-                                </div>
-                            </div>
-                            <div class="header_right">
-                                <input type="text" v-model="textToSeach" @keyup.enter="doSearch">
-                                <button @click="doSearch">Search</button>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- FRAMEWORK -->
+    <link rel="stylesheet" href="css/framework.css">
+    <!-- https://fontawesome.com/v4.7.0/icons/ -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- FLAG ICONS  https://cdnjs.com/libraries/flag-icon-css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"
+        integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw=="
+        crossorigin="anonymous" />
+    <!-- MyCSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- JSON -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <title></title>
+
+</head>
+
+<body>
+    <div id="app">
+        <div tabindex="-1" class="all">
+            <div class="container_flex">
+                <header>
+                    <div class="header_box">
+                        <div class="header_left">
+                            <div class="logo_box">
+                                <img src="img/Fake-PrimeVideo.png" alt="">
                             </div>
                         </div>
+                        <div class="header_right">
+                            <input type="text" v-model="textToSeach" @keyup.enter="doSearch">
+                            <button @click="doSearch">Search</button>
+                        </div>
+                    </div>
 
-                    </header>
-                    <main>
-                        <div  class="slider_container">
-                            <div class="slider_box">
-                                <div class="box-arrow">
-                                    <i class="fas fa-chevron-left" @click="changeImg(-1)"></i>
+                </header>
+                <main>
+                    <div class="slider_container">
+                        <div class="slider_box">
+                            <div class="box-arrow">
+                                <i class="fas fa-chevron-left" @click="changeImg(-1)"></i>
+                            </div>
+                            <div class="box-img">
+                                <img :src="imageList[activeImg]" class="slider-image">
+                                <div class="slider-dots-container">
+                                    <a href="#" class="dot btnshadow" :class="{currentImg: activeImg === index}"
+                                        v-for="(img, index) in imageList" @click="dotclick(index)"></a>
                                 </div>
-                                <div class="box-img">
-                                    <img :src="imageList[activeImg]" class="slider-image">
-                                    <div class="slider-dots-container">
-                                        <a href="#" class="dot btnshadow" :class="{currentImg: activeImg === index}" v-for="(img, index) in imageList" @click = "dotclick(index)"></a>
+                            </div>
+                            <div class="box-arrow">
+                                <i class="fas fa-chevron-right " @click="changeImg(1)"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_container">
+                        <div class="movie_section">
+                            <div class="movie_section_box">
+                                <div class="label">
+                                    <h1>Movie movie_section</h1>
+                                </div>
+                                <div class="show_container">
+                                    <div class="show_template" v-for="movie in movieList">
+                                        <div class="show_template_box">
+                                            <div>{{movie.title}}</div>
+                                            <div>{{movie.original_title}}</div>
+                                            <div>{{movie.original_language}}
+                                                <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
+                                                <span :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
+                                            </div>
+                                            <div>{{movie.vote_average}}</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="box-arrow">
-                                    <i class="fas fa-chevron-right " @click="changeImg(1)"></i>
+                            </div>
+                        </div>
+
+                        <div class="tv_section">
+                            <div class="tv_section_box">
+                                <div class="label">
+                                    <h1>tv tv_section</h1>
+                                </div>
+                                <div class="show_container">
+                                    <div class="show_template" v-for="tv in tvSeriesList">
+                                        <div class="show_template_box">
+                                            <div> TV Series {{tv.name}}</div>
+                                            <div>{{tv.original_name}}</div>
+                                            <div>{{tv.original_language}}
+                                                <span :class="`flag-icon flag-icon-${tv.origin_country}`"></span>
+                                            </div>
+                                            <div>{{tv.vote_average}}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="main_container">
-                            <ol v-for="movie in movieList">
-                                <li>{{movie.title}}</li>
-                                <li>{{movie.original_title}}</li>
-                                <li>{{movie.original_language}}
-                                    <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
-                                    <span :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
-                                </li>
-                                <li>{{movie.vote_average}}</li>
-                            </ol>
-                            <ol v-for="tv in tvSeriesList">
-                                <li> TV Series {{tv.name}}</li>
-                                <li>{{tv.original_name}}</li>
-                                <li>{{tv.original_language}}
-                                    <span :class="`flag-icon flag-icon-${tv.origin_country}`"></span>
-                                </li>
-                                <li>{{tv.vote_average}}</li>
-                            </ol>
-                        </div>
-                    </main>
-                    <footer>
 
-                    </footer>
-                </div>
+                    </div>
+                </main>
+                <footer>
+
+                </footer>
             </div>
-
-            
-
-
         </div>
-        <!-- My JS -->
-        <script src="js/myscripts.js"></script>
-        <!-- <script src="js/myslider.js"></script> -->
-    </body>
+
+
+
+
+    </div>
+    <!-- My JS -->
+    <script src="js/myscripts.js"></script>
+    <!-- <script src="js/myslider.js"></script> -->
+</body>
+
 </html>
