@@ -31,13 +31,20 @@
                 <div class="container_flex">
                     <header>
                         <div class="header_box">
-                            <input type="text" v-model="textToSeach" @keyup.enter="doSearch">
-                            <button @click="doSearch">Search</button>
+                            <div class="header_left">
+                                <div class="logo_box">
+                                    <img src="img/Fake-PrimeVideo.png" alt="">
+                                </div>
+                            </div>
+                            <div class="header_right">
+                                <input type="text" v-model="textToSeach" @keyup.enter="doSearch">
+                                <button @click="doSearch">Search</button>
+                            </div>
                         </div>
 
                     </header>
                     <main>
-                        <div id="app2" class="slider_container">
+                        <div  class="slider_container">
                             <div class="slider_box">
                                 <div class="box-arrow">
                                     <i class="fas fa-chevron-left" @click="changeImg(-1)"></i>
@@ -45,34 +52,33 @@
                                 <div class="box-img">
                                     <img :src="imageList[activeImg]" class="slider-image">
                                     <div class="slider-dots-container">
-                                        <a href="#" class="dot" :class="{currentImg: activeImg === index}" v-for="(img, index) in imageList" @click = "dotclick(index)"></a>
+                                        <a href="#" class="dot btnshadow" :class="{currentImg: activeImg === index}" v-for="(img, index) in imageList" @click = "dotclick(index)"></a>
                                     </div>
                                 </div>
                                 <div class="box-arrow">
-                                    <i class="fas fa-chevron-right" @click="changeImg(1)"></i>
+                                    <i class="fas fa-chevron-right " @click="changeImg(1)"></i>
                                 </div>
-                                
                             </div>
                         </div>
-
-                        <ol v-for="movie in movieList">
-                            <li>{{movie.title}}</li>
-                            <li>{{movie.original_title}}</li>
-                            <li>{{movie.original_language}}
-                                <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
-                                <span :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
-                            </li>
-                            <li>{{movie.vote_average}}</li>
-                        </ol>
-                        <ol v-for="tv in tvSeriesList">
-                            <li> TV Series {{tv.name}}</li>
-                            <li>{{tv.original_name}}</li>
-                            <li>{{tv.original_language}}
-                                <span :class="`flag-icon flag-icon-${tv.origin_country}`"></span>
-                            </li>
-                            <li>{{tv.vote_average}}</li>
-                        </ol>
-
+                        <div class="main_container">
+                            <ol v-for="movie in movieList">
+                                <li>{{movie.title}}</li>
+                                <li>{{movie.original_title}}</li>
+                                <li>{{movie.original_language}}
+                                    <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
+                                    <span :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
+                                </li>
+                                <li>{{movie.vote_average}}</li>
+                            </ol>
+                            <ol v-for="tv in tvSeriesList">
+                                <li> TV Series {{tv.name}}</li>
+                                <li>{{tv.original_name}}</li>
+                                <li>{{tv.original_language}}
+                                    <span :class="`flag-icon flag-icon-${tv.origin_country}`"></span>
+                                </li>
+                                <li>{{tv.vote_average}}</li>
+                            </ol>
+                        </div>
                     </main>
                     <footer>
 
