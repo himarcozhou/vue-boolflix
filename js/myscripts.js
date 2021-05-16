@@ -3,6 +3,7 @@ new Vue({
     data: {
         URI: "https://api.themoviedb.org/3/search/",
         TMDBAPIKEY: "4932702c205c62967729902c6fdb3dce",
+        URLIMG: "https://image.tmdb.org/t/p/",
         textToSeach: "",
         movieListCheck: [],
         movieList: [],

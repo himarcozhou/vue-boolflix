@@ -76,13 +76,21 @@
                                 <div class="show_container">
                                     <div class="show_template" v-for="movie in movieList">
                                         <div class="show_template_box">
-                                            <div>{{movie.title}}</div>
-                                            <div>{{movie.original_title}}</div>
-                                            <div>{{movie.original_language}}
-                                                <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
-                                                <span :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
+                                            <div class="show_template_front">
+                                                <div>
+                                                    <img src="" alt="">
+                                                </div>
                                             </div>
-                                            <div>{{movie.vote_average}}</div>
+                                            <div class="show_template_behind">
+                                                <div>{{movie.title}}</div>
+                                                <div>{{movie.original_title}}</div>
+                                                <div>{{movie.original_language}}
+                                                    <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
+                                                    <span
+                                                        :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
+                                                </div>
+                                                <div>{{movie.vote_average}}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -97,12 +105,19 @@
                                 <div class="show_container">
                                     <div class="show_template" v-for="tv in tvSeriesList">
                                         <div class="show_template_box">
-                                            <div> TV Series {{tv.name}}</div>
-                                            <div>{{tv.original_name}}</div>
-                                            <div>{{tv.original_language}}
-                                                <span :class="`flag-icon flag-icon-${tv.origin_country}`"></span>
+                                            <div class="show_template_front">
+                                                <div>
+                                                    <img src="" alt="">
+                                                </div>
                                             </div>
-                                            <div>{{tv.vote_average}}</div>
+                                            <div class="show_template_behind">
+                                                <div> TV Series {{tv.name}}</div>
+                                                <div>{{tv.original_name}}</div>
+                                                <div>{{tv.original_language}}
+                                                    <span :class="`flag-icon flag-icon-${tv.origin_country}`"></span>
+                                                </div>
+                                                <div>{{tv.vote_average}}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
