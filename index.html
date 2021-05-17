@@ -22,6 +22,7 @@
     <!-- MyCSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="css/scrollbar.css">
     <!-- Vue JS -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <!-- JSON -->
@@ -43,8 +44,17 @@
                             </div>
                         </div>
                         <div class="header_right">
-                            <input type="text" v-model="textToSeach" @keyup.enter="doSearch">
-                            <button @click="doSearch">Search</button>
+                            <input class="searchInput" type="text" v-model="textToSeach" 
+                            @keyup.enter="doSearch"
+                            @keyup.esc="textToSeach = ''">
+                            <button class="btn btn_search" @click="doSearch">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+
+                            <!-- Quando scrivi in Input compare una X -->
+                            <a href="#" class="btn-link" v-if="textToSeach" >
+                                <i class="fas fa-times" @click="textToSeach = ''"></i>
+                            </a>
                         </div>
                     </div>
 

@@ -54,8 +54,70 @@ main{
     flex-grow: 1;
 }
 .header_right{
-    width: 200px;
+    display: flex;
+    height: 40px;
+    position: relative;
 }
+.searchInput{
+    font-size: 17px;
+    line-height: 24px;
+    padding: 7px 0;
+    padding-left: 40px;
+    box-shadow: none;
+    float: right;
+    margin: 0;
+    pointer-events: all;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    color: white;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+    transition: box-shadow .15s ease-in-out;
+}
+.searchInput:focus{
+        color: #ffffff;
+        outline: 0; 
+        box-shadow: 0px 0px 10px 2px #9696966c;
+}
+.btn-link{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    right: 0;
+    cursor: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.btn-link i {
+    cursor: pointer;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.24);
+    border-radius: 50%;
+    height: 18px;
+    width: 18px;
+    font-size: 14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.btn_search{
+    position: absolute;
+    height: 40px;
+    cursor: auto;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.548);
+}
+.btn_search:hover{
+    color: rgba(255, 255, 255, 0.842);
+}
+
 .logo_box img{
     height: 52px;
     object-fit: contain;
@@ -65,11 +127,17 @@ main{
     background-color: #0f171e;
     display: flex;
     flex-direction: column;
+    padding-left: 40px;
 }
 .show_container{
     display: flex;
+    padding: 5px;
 }
 .show_template_box{
     padding: 10px;
     border: solid 1px white;
+}
+.movie_section, .tv_section{
+    overflow-x: auto;
+    padding-top: 20px;
 }

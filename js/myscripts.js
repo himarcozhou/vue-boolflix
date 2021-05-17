@@ -43,6 +43,24 @@ new Vue({
         ],
         activeImg: 0,
     },
+    computed:{
+        filteredMovieList(){
+            const filteredData = this.movieList.filter((x) => {
+                //return element.name.toLowerCase().includes(this.searchText.toLowerCase());
+                return x.name.toLowerCase().startsWith(this.textToSeach.toLowerCase());
+            });
+
+            return filteredData;
+        },
+        filteredtvSeriesList(){
+            const filteredData = this.tvSeriesList.filter((x) => {
+                //return element.name.toLowerCase().includes(this.searchText.toLowerCase());
+                return x.name.toLowerCase().startsWith(this.textToSeach.toLowerCase());
+            });
+
+            return filteredData;
+        },
+    },
     methods: {
         makeAxiosSearch(searchType) {
             this.check = false;
