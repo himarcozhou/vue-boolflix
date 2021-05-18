@@ -78,13 +78,11 @@
                     </div>
                     <div class="main_container">
                         <div class="movie_section">
-                            <div class="movie_section_box">
                                 <div class="label">
-                                    <h1>Movie movie_section</h1>
+                                    <h1>Movies</h1>
                                 </div>
                                 <div class="show_container">
-                                    <div class="show_template" v-for="movie in movieList">
-                                        <div class="show_template_box">
+                                        <div class="show_template_box" v-for="movie in movieList">
                                             <div class="show_template_front">
                                                 <div class="poster_box">
                                                     <img class="poster" v-if="movie.poster_path"
@@ -120,33 +118,53 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
-                            </div>
                         </div>
 
                         <div class="tv_section">
                             <div class="tv_section_box">
                                 <div class="label">
-                                    <h1>tv tv_section</h1>
+                                    <h1>Series</h1>
                                 </div>
                                 <div class="show_container">
                                     <div class="show_template" v-for="tv in tvSeriesList">
                                         <div class="show_template_box">
                                             <div class="show_template_front">
-                                                <div>
-                                                    <img src="" alt="">
+                                                <div class="poster_box">
+                                                    <img class="poster" v-if="tv.poster_path"
+                                                        :src="URLIMG + tv.poster_path">
+                                                    <img class="poster" v-if="!tv.poster_path" :src="fallbackIMG">
                                                 </div>
                                             </div>
                                             <div class="show_template_behind">
-                                                <div> TV Series {{tv.name}}</div>
-                                                <div>{{tv.original_name}}</div>
-                                                <div>{{tv.original_language}}
-                                                    <span :class="`flag-icon flag-icon-${tv.origin_country}`"></span>
+                                                <div class="poster_box">
+                                                    <img class="poster" v-if="tv.poster_path"
+                                                        :src="URLIMG + tv.poster_path">
+                                                    <img class="poster" v-if="!tv.poster_path" :src="fallbackIMG">
                                                 </div>
-                                                <div>{{tv.vote_average}}</div>
+                                                <div class="description">
+                                                    <div class="trailer_box">
+                                                        <img class="trailer" :src="fallbackTRAILER">
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="title">{{tv.name}}</div>
+                                                        <div class="ogtitle">Original Title: {{tv.original_name}}
+                                                        </div>
+                                                        <div class="overview">{{tv.overview}} </div>
+                                                        <div class="language">Language: {{tv.original_language}}
+                                                            <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
+                                                            <span
+                                                                :class="`flag-icon ${addFlag(tv.original_language)}`"></span>
+                                                        </div>
+                                                        <div>Rating: {{tv.vote_average}}
+                                                            <i  v-for="(star, i) in 5"
+                                                                :class="i <= rating(tv.vote_average)-1 ? 'fas fa-star coloured' : 'far fa-star'"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
