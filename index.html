@@ -45,7 +45,7 @@
                         </div>
                         <div class="header_right">
                             <input class="searchInput" type="text" v-model="textToSeach" @keyup.enter="doSearch"
-                            @keyup.esc="textToSeach = ''">
+                                @keyup.esc="textToSeach = ''">
                             <button class="btn btn_search" @click="doSearch">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
@@ -59,16 +59,21 @@
 
                 </header>
                 <main>
-                    <div class="slider_container">
+                    <div class="slider_container" @mouseover="sliderPause" @mouseout="sliderPlay">
                         <div class="slider_box">
                             <div class="box-arrow">
                                 <i class="fas fa-chevron-left" @click="changeImg(-1)"></i>
                             </div>
-                            <div class="box-img">
-                                <img :src="imageList[activeImg]" class="slider-image">
-                                <div class="slider-dots-container">
-                                    <a href="#" class="dot btnshadow" :class="{currentImg: activeImg === index}"
-                                        v-for="(img, index) in imageList" @click="dotclick(index)"></a>
+                            <div class="center_box">
+                                <div class="sliderfeaturedbox">
+                                    <div class="sliderfeatured">Feautured movies</div>
+                                </div>
+                                <div class="box-img">
+                                    <img :src="imageList[activeImg]" class="slider-image">
+                                    <div class="slider-dots-container">
+                                        <a href="#" class="dot btnshadow" :class="{currentImg: activeImg === index}"
+                                            v-for="(img, index) in imageList" @click="dotclick(index)"></a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="box-arrow">
@@ -78,47 +83,47 @@
                     </div>
                     <div class="main_container">
                         <div class="movie_section">
-                                <div class="label">
-                                    <h1>Movies</h1>
-                                </div>
-                                <div class="show_container">
-                                        <div class="show_template_box" v-for="movie in movieList">
-                                            <div class="show_template_front">
-                                                <div class="poster_box">
-                                                    <img class="poster" v-if="movie.poster_path"
-                                                        :src="URLIMG + movie.poster_path">
-                                                    <img class="poster" v-if="!movie.poster_path" :src="fallbackIMG">
-                                                </div>
+                            <div class="label">
+                                <h1>Movies</h1>
+                            </div>
+                            <div class="show_container">
+                                <div class="show_template_box" v-for="movie in movieList">
+                                    <div class="show_template_front">
+                                        <div class="poster_box">
+                                            <img class="poster" v-if="movie.poster_path"
+                                                :src="URLIMG + movie.poster_path">
+                                            <img class="poster" v-if="!movie.poster_path" :src="fallbackIMG">
+                                        </div>
+                                    </div>
+                                    <div class="show_template_behind">
+                                        <div class="poster_box">
+                                            <img class="poster" v-if="movie.poster_path"
+                                                :src="URLIMG + movie.poster_path">
+                                            <img class="poster" v-if="!movie.poster_path" :src="fallbackIMG">
+                                        </div>
+                                        <div class="description">
+                                            <div class="trailer_box">
+                                                <img class="trailer" :src="fallbackTRAILER">
                                             </div>
-                                            <div class="show_template_behind">
-                                                <div class="poster_box">
-                                                    <img class="poster" v-if="movie.poster_path"
-                                                        :src="URLIMG + movie.poster_path">
-                                                    <img class="poster" v-if="!movie.poster_path" :src="fallbackIMG">
+                                            <div class="details">
+                                                <div class="title">{{movie.title}}</div>
+                                                <div class="ogtitle">Original Title: {{movie.original_title}}
                                                 </div>
-                                                <div class="description">
-                                                    <div class="trailer_box">
-                                                        <img class="trailer" :src="fallbackTRAILER">
-                                                    </div>
-                                                    <div class="details">
-                                                        <div class="title">{{movie.title}}</div>
-                                                        <div class="ogtitle">Original Title: {{movie.original_title}}
-                                                        </div>
-                                                        <div class="overview">{{movie.overview}} </div>
-                                                        <div class="language">Language: {{movie.original_language}}
-                                                            <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
-                                                            <span
-                                                                :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
-                                                        </div>
-                                                        <div>Rating: {{movie.vote_average}}
-                                                            <i  v-for="(star, i) in 5"
-                                                                :class="i <= rating(movie.vote_average)-1 ? 'fas fa-star coloured' : 'far fa-star'"></i>
-                                                        </div>
-                                                    </div>
+                                                <div class="overview">{{movie.overview}} </div>
+                                                <div class="language">Language: {{movie.original_language}}
+                                                    <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
+                                                    <span
+                                                        :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
+                                                </div>
+                                                <div>Rating: {{movie.vote_average}}
+                                                    <i v-for="(star, i) in 5"
+                                                        :class="i <= rating(movie.vote_average)-1 ? 'fas fa-star coloured' : 'far fa-star'"></i>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
 
                         <div class="tv_section">
@@ -157,14 +162,14 @@
                                                                 :class="`flag-icon ${addFlag(tv.original_language)}`"></span>
                                                         </div>
                                                         <div>Rating: {{tv.vote_average}}
-                                                            <i  v-for="(star, i) in 5"
+                                                            <i v-for="(star, i) in 5"
                                                                 :class="i <= rating(tv.vote_average)-1 ? 'fas fa-star coloured' : 'far fa-star'"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -186,10 +191,10 @@
     <script src="js/myscripts.js"></script>
     <!-- <script src="js/myslider.js"></script> -->
     <script>
-        window.addEventListener("load", function(event) {
-          // here is the Vue code
+        window.addEventListener("load", function (event) {
+            // here is the Vue code
         });
-      </script>
+    </script>
 </body>
 
 </html>

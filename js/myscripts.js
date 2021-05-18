@@ -181,6 +181,16 @@ new Vue({
             }
             this.activeImg = newIndex;
         },
+        sliderPlay() {
+            clearInterval(this.interval);
+
+            this.interval = setInterval(() => {
+                this.changeImg(+1, true);
+            }, 4000);
+        },
+        sliderPause() {
+            clearInterval(this.interval);
+        },
         dotclick(clickedot){
             this.activeImg = clickedot;
         },
@@ -192,5 +202,7 @@ new Vue({
         document.querySelector(".slider_box").focus();
         this.doSearch();
         
+        //slider
+        this.sliderPlay();
     }
 })
