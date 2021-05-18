@@ -45,7 +45,7 @@
                         </div>
                         <div class="header_right">
                             <input class="searchInput" type="text" v-model="textToSeach" @keyup.enter="doSearch"
-                                @keyup.esc="textToSeach = ''">
+                            @keyup.esc="textToSeach = ''">
                             <button class="btn btn_search" @click="doSearch">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
@@ -185,6 +185,11 @@
     <!-- My JS -->
     <script src="js/myscripts.js"></script>
     <!-- <script src="js/myslider.js"></script> -->
+    <script>
+        window.addEventListener("load", function(event) {
+          // here is the Vue code
+        });
+      </script>
 </body>
 
 </html>

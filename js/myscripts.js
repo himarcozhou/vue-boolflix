@@ -7,6 +7,7 @@ new Vue({
         fallbackIMG: "https://lh3.googleusercontent.com/proxy/DbjUlclTtBlI6JuRbmkJfVj8XTsHWmG8HTVP8hebCiXxbwhqccaiWI1OELM3KTMnzzqZffnAoDF57nqVvwHn8egKzfvWHTTyFFiKlTcPbNnHCkbkZwuQVkik6ng6EH0weKw",
         fallbackTRAILER: "https://lh3.googleusercontent.com/proxy/WyZLPU_dwmIBwvUBz656gul43IR-JweI_SXrMDzC1-ni3ZkWNS4VCyW_uJe9ORVzgOwWqiqUHyEzZjGlO-ZBVDm2XUc3o7qZKsf8DMUaaNnTIX1J3PY5rNgfhi8VsxoCjbhrBk_njOUj8I7j2mVWUvlupYr8BSGtJUNQ8Us",
         textToSeach: "",
+        textToSeach2: "pokemon",
         movieListCheck: [],
         movieList: [],
         tvSeriesList: [],
@@ -66,10 +67,13 @@ new Vue({
     methods: {
         makeAxiosSearch(searchType) {
             this.check = false;
+            if(this.textToSeach){
+                this.textToSeach2 = this.textToSeach;
+            }
             const axiosOptions = {
                 params: {
                     api_key: this.TMDBAPIKEY,
-                    query: this.textToSeach
+                    query: this.textToSeach2
                 }
             };
             axios.get("https://api.themoviedb.org/3/search/" + searchType, axiosOptions)
@@ -78,7 +82,6 @@ new Vue({
                     if (x.data.results) {
 
                         if (searchType === "movie") {
-                            console.log("ciao");
                             this.movieList = x.data.results;
 
                             // this.movieListCheck = x.data.results;
@@ -186,6 +189,8 @@ new Vue({
           },
     },
     mounted(){
-        document.querySelector(".slider_box").focus()
+        document.querySelector(".slider_box").focus();
+        this.doSearch();
+        
     }
 })
