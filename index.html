@@ -44,15 +44,14 @@
                             </div>
                         </div>
                         <div class="header_right">
-                            <input class="searchInput" type="text" v-model="textToSeach" 
-                            @keyup.enter="doSearch"
-                            @keyup.esc="textToSeach = ''">
+                            <input class="searchInput" type="text" v-model="textToSeach" @keyup.enter="doSearch"
+                                @keyup.esc="textToSeach = ''">
                             <button class="btn btn_search" @click="doSearch">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
 
                             <!-- Quando scrivi in Input compare una X -->
-                            <a href="#" class="btn-link" v-if="textToSeach" >
+                            <a href="#" class="btn-link" v-if="textToSeach">
                                 <i class="fas fa-times" @click="textToSeach = ''"></i>
                             </a>
                         </div>
@@ -87,19 +86,38 @@
                                     <div class="show_template" v-for="movie in movieList">
                                         <div class="show_template_box">
                                             <div class="show_template_front">
-                                                <div>
-                                                    <img src="" alt="">
+                                                <div class="poster_box">
+                                                    <img class="poster" v-if="movie.poster_path"
+                                                        :src="URLIMG + movie.poster_path">
+                                                    <img class="poster" v-if="!movie.poster_path" :src="fallbackIMG">
                                                 </div>
                                             </div>
                                             <div class="show_template_behind">
-                                                <div>{{movie.title}}</div>
-                                                <div>{{movie.original_title}}</div>
-                                                <div>{{movie.original_language}}
-                                                    <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
-                                                    <span
-                                                        :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
+                                                <div class="poster_box">
+                                                    <img class="poster" v-if="movie.poster_path"
+                                                        :src="URLIMG + movie.poster_path">
+                                                    <img class="poster" v-if="!movie.poster_path" :src="fallbackIMG">
                                                 </div>
-                                                <div>{{movie.vote_average}}</div>
+                                                <div class="description">
+                                                    <div class="trailer_box">
+                                                        <img class="trailer" :src="fallbackTRAILER">
+                                                    </div>
+                                                    <div class="details">
+                                                        <div class="title">{{movie.title}}</div>
+                                                        <div class="ogtitle">Original Title: {{movie.original_title}}
+                                                        </div>
+                                                        <div class="overview">{{movie.overview}} </div>
+                                                        <div class="language">Language: {{movie.original_language}}
+                                                            <!-- <span :class="`flag-icon flag-icon-${movie.flag}`"></span> -->
+                                                            <span
+                                                                :class="`flag-icon ${addFlag(movie.original_language)}`"></span>
+                                                        </div>
+                                                        <div>Rating: {{movie.vote_average}}
+                                                            <i  v-for="(star, i) in 5"
+                                                                :class="i <= rating(movie.vote_average)-1 ? 'fas fa-star coloured' : 'far fa-star'"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

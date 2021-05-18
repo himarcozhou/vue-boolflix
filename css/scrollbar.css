@@ -3,14 +3,14 @@
     height: 10px;
    }
    ::-webkit-scrollbar-thumb {
-    background: #333961;
+    background: #9b9b9b;
     border-radius: 8px;
    }
    ::-webkit-scrollbar-thumb:hover{
-    background: linear-gradient(13deg, #262257a2 36%,#26234d 100%);
+    background: linear-gradient(13deg, #ffffffa2 36%,#ffffff 100%);
 }
     
    ::-webkit-scrollbar-track{
-    background: #ffffff6c;
+    background: #ffffff2a;
     border-radius: 8px;
    }

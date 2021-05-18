@@ -3,7 +3,9 @@ new Vue({
     data: {
         URI: "https://api.themoviedb.org/3/search/",
         TMDBAPIKEY: "4932702c205c62967729902c6fdb3dce",
-        URLIMG: "https://image.tmdb.org/t/p/",
+        URLIMG: "https://image.tmdb.org/t/p/w500",
+        fallbackIMG: "https://lh3.googleusercontent.com/proxy/DbjUlclTtBlI6JuRbmkJfVj8XTsHWmG8HTVP8hebCiXxbwhqccaiWI1OELM3KTMnzzqZffnAoDF57nqVvwHn8egKzfvWHTTyFFiKlTcPbNnHCkbkZwuQVkik6ng6EH0weKw",
+        fallbackTRAILER: "https://lh3.googleusercontent.com/proxy/WyZLPU_dwmIBwvUBz656gul43IR-JweI_SXrMDzC1-ni3ZkWNS4VCyW_uJe9ORVzgOwWqiqUHyEzZjGlO-ZBVDm2XUc3o7qZKsf8DMUaaNnTIX1J3PY5rNgfhi8VsxoCjbhrBk_njOUj8I7j2mVWUvlupYr8BSGtJUNQ8Us",
         textToSeach: "",
         movieListCheck: [],
         movieList: [],
@@ -178,7 +180,10 @@ new Vue({
         },
         dotclick(clickedot){
             this.activeImg = clickedot;
-        }
+        },
+        rating(vote) {
+            return Math.round(vote / 2);
+          },
     },
     mounted(){
         document.querySelector(".slider_box").focus()

@@ -131,13 +131,78 @@ main{
 }
 .show_container{
     display: flex;
-    padding: 5px;
+    height: 400px;
 }
 .show_template_box{
-    padding: 10px;
-    border: solid 1px white;
+    margin-right: 10px;
+    height: 100%;
+    width: 280px;
 }
 .movie_section, .tv_section{
     overflow-x: auto;
     padding-top: 20px;
+    overflow-y: hidden;
+}
+.show_template_front{
+    display: none;
+}
+.poster_box{
+    height: 400px;
+    position: absolute;
+}
+.poster{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.show_template_behind{
+    opacity: 1;
+    position: relative;
+    height: 100%;
+    border: solid 1px white;
+}
+.show_template_behind .poster_box{
+    height: inherit;
+}
+.show_template_behind .poster{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.07;
+}
+.description{
+    position: absolute;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.trailer_box{
+    height: 150px;
+}
+.trailer{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details{
+    opacity: 0.8;
+    flex-grow:1;
+    overflow-y: auto;
+}
+.details > div{
+    margin: 8px 0;
+}
+.details .title{
+    font-size: 18;
+    margin: 12px 0;
+    font-weight: 550;
+}
+.ogtitle{
+    font-size: 14;
+}
+.overview{
+    line-height: 1.2;
+    font-size: 16;
 }
